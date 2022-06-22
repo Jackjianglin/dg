@@ -3,11 +3,20 @@ import { useRouter } from 'vue-router';
 import { reactive } from "vue";
 
 const allDataStatic = reactive({
-    total: window._AllData.length,
-    answered: Object.keys(window._ALLAnswerData).length,
-    errored: Object.keys(window._ALLErrorData).length,
-    errorSuccessed: Object.keys(window._ALLErrorSuccessData).length,
+    total: 0,
+    answered: 0,
+    errored: 0,
+    errorSuccessed: 0,
 });
+
+function initData(params) {
+    allDataStatic.total = window._AllData.length;
+    allDataStatic.answered = Object.keys(window._ALLAnswerData).length;
+    allDataStatic.errored = Object.keys(window._ALLErrorData).length;
+    allDataStatic.errorSuccessed = Object.keys(window._ALLErrorSuccessData).length;
+}
+initData();
+
 
 const router = useRouter();
 function toRandom(type = 'all') {
@@ -22,6 +31,12 @@ function toPage(page) {
     router.push({
         path: '/' + page,
     });
+}
+
+function cleanHistory() {
+    window.cleanHistory();
+    initData();
+    console.log('cleanHistory');
 }
 </script>
 
@@ -60,13 +75,13 @@ function toPage(page) {
                     </div>
                 </div>
             </div>
-            <!-- <div class="card" @click="toPage('setting')">
+            <div class="card" @click="cleanHistory">
                 <div class="card-content">
                     <div class="title">
-                        设置
+                        清理记录
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
 
     </div>

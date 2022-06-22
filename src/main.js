@@ -20,6 +20,10 @@ function initStaticData() {
     window._ALLErrorSuccessData = localStorage.getItem(ALL_ERROR_SUCCESS_INDEX) ? JSON.parse(localStorage.getItem(ALL_ERROR_SUCCESS_INDEX)) : {};
     window._ALLNeedToAnswerData = arrSubtraction(Object.keys(AllData), Object.keys(window._ALLAnswerData));
 }
+window.cleanHistory = function name(params) {
+    localStorage.clear();
+    initStaticData()
+}
 initStaticData();
 window.logS = function name() {
     console.log(`答过题 数目：${Object.keys(window._ALLAnswerData).length}`, window._ALLAnswerData);
