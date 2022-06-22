@@ -10,7 +10,7 @@ const route = useRoute();
 // console.log(`route.params`, JSON.stringify(route.query.type));
 
 
-const ResultChoice = ['A', 'B', 'C', 'D', 'E'];
+const ResultChoice = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 const problem = reactive({
     problem: '',
     results: [],
@@ -62,7 +62,7 @@ function getProblem() {
             return;
         }
         // const needIndex = Math.floor(Math.random() * window._ALLNeedToAnswerData.length);
-        const needIndex = 0;
+        const needIndex = 92;
         proIndex = window._ALLNeedToAnswerData[needIndex];
         window._ALLNeedToAnswerData.splice(needIndex, 1);
         problem.percentage = ((window._AllData.length - window._ALLNeedToAnswerData.length) * 100 / window._AllData.length).toFixed(0)
