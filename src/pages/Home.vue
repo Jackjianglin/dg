@@ -75,9 +75,9 @@ function cleanHistory() {
                     </div>
                 </div>
             </div>
-            <div class="card" @click="cleanHistory">
+            <div class="card" style="width: 20vw; height: 20vw; border-radius: 50%; background: darkred; position: absolute; right: 0; top: 0;" @click="cleanHistory">
                 <div class="card-content">
-                    <div class="title">
+                    <div class="title" style="font-size: 4vw;">
                         清理记录
                     </div>
                 </div>
