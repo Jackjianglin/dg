@@ -1,7 +1,7 @@
 import { createApp, defineAsyncComponent } from 'vue'
 import { createRouter, createWebHashHistory } from "vue-router";
 import App from './App.vue';
-import AllData from './assets/result.json';
+import AllData from './assets/result3.json';
 window._AllData = AllData;
 window._AllData.forEach((r, i) => r.i = i);
 

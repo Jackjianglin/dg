@@ -31,7 +31,7 @@ function toPage(page) {
             <div class="card" @click="toRandom('all')">
                 <div class="card-content">
                     <div class="title">
-                        随机刷题
+                        顺序刷题
                     </div>
                     <div class="subtitle">
                         <span style="font-size: 24px;">{{ allDataStatic.answered }}</span> / {{ allDataStatic.total }}

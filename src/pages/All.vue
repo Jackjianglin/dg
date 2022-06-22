@@ -83,7 +83,7 @@ function handleChange(e) {
                 <br>
                 <br>
                 <div v-for="(res, resi) in item.r" :key="resi">
-                    {{ ResultChoice[resi] }} {{ res }}
+                   {{ res }}
                 </div>
                 <br>
                 答案：{{ item.a.join(' ') }}

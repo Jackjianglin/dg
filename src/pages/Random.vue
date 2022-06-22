@@ -1,7 +1,7 @@
 <script setup>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import { NButton, useNotification } from 'naive-ui';
+import { NButton, useNotification, NProgress } from 'naive-ui';
 import { reactive } from 'vue';
 import { ALL_ANSWER_INDEX, ALL_ERROR_INDEX, ALL_ERROR_SUCCESS_INDEX } from "../constants";
 import { useRoute } from "vue-router";
@@ -16,6 +16,7 @@ const problem = reactive({
     results: [],
     answer: [],
     hasAnswered: false,
+    percentage: 0,
     feedBack: {
         isOk: false,
         message: '',
@@ -37,6 +38,7 @@ function getProblem() {
     if (route.query.type === 'error' || window._ALLNeedToAnswerData.length === 0 || curAnswerIndex > 2) {
         curAnswerIndex = 0;
         const errNeedToA = calcErrorNeedToAnswer();
+        problem.percentage = ((Object.keys(window._ALLErrorData).length - errNeedToA.length) * 100 / Object.keys(window._ALLErrorData).length).toFixed(0)
         if (errNeedToA.length === 0) {
             if (route.query.type === 'error') {
                 notification.success({
@@ -50,7 +52,8 @@ function getProblem() {
             }
             return;
         }
-        const needIndex = Math.floor(Math.random() * errNeedToA.length);
+        // const needIndex = Math.floor(Math.random() * errNeedToA.length);
+        const needIndex = 0;
         proIndex = errNeedToA[needIndex];
     } else if (route.query.type === 'all') {
         if (window._ALLNeedToAnswerData.length === 0) {
@@ -58,9 +61,11 @@ function getProblem() {
             problem.hasAnswered = true;
             return;
         }
-        const needIndex = Math.floor(Math.random() * window._ALLNeedToAnswerData.length);
+        // const needIndex = Math.floor(Math.random() * window._ALLNeedToAnswerData.length);
+        const needIndex = 0;
         proIndex = window._ALLNeedToAnswerData[needIndex];
         window._ALLNeedToAnswerData.splice(needIndex, 1);
+        problem.percentage = ((window._AllData.length - window._ALLNeedToAnswerData.length) * 100 / window._AllData.length).toFixed(0)
     } else {
         return;
     }
@@ -125,13 +130,14 @@ getProblem();
 
 <template>
     <div class="page">
+        <n-progress type="line" :percentage="problem.percentage" :show-indicator="true" />
         <div class="title">
             {{ problem.problem }}
         </div>
         <div class="choice">
             <div class="item" :class="{ 'choice-item': item.choice }" v-for="(item, index) in problem.results"
                 @click="choiceClick(item)">
-                {{ item.index }} {{ item.content }}
+                {{ item.content }}
             </div>
         </div>
 
