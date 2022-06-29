@@ -62,7 +62,7 @@ function getProblem() {
             return;
         }
         // const needIndex = Math.floor(Math.random() * window._ALLNeedToAnswerData.length);
-        const needIndex = 92;
+        const needIndex = 0;
         proIndex = window._ALLNeedToAnswerData[needIndex];
         window._ALLNeedToAnswerData.splice(needIndex, 1);
         problem.percentage = ((window._AllData.length - window._ALLNeedToAnswerData.length) * 100 / window._AllData.length).toFixed(0)
